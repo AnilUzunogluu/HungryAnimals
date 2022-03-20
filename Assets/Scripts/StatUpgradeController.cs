@@ -14,7 +14,7 @@ public class StatUpgradeController : MonoBehaviour
 
     public void FireRateUpgrade()
     {
-        var cost = (rateLevel + 2) * 5;
+        var cost = (rateLevel + 2) * 10;
         if (PlayerStats.coins >= cost && rateLevel < 3)
         {
             PlayerStats.coins -= cost;
@@ -36,7 +36,7 @@ public class StatUpgradeController : MonoBehaviour
 
     public void MovementSpeedUpgrade()
     {
-        var cost = (speedLevel + 2) * 35;
+        var cost = (speedLevel + 2) * 30;
         if (PlayerStats.coins >= cost && speedLevel < 3 )
         {
             PlayerStats.coins -= cost;
