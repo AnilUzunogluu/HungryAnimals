@@ -1,22 +1,24 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public PlayerStats playerStats;
     public float horizontalInput;
     private float xRange = 20f;
+    
     public GameObject projectile;
     private float rateCount;
-    public static int currentHealth;
+    
+    public int currentHealth;
+    public float currentMoveSpeed;
+    public float currentFireRate;
+    
     private GameManager gameManager;
 
     public void Start()
     {
-        gameManager = GameObject.FindObjectOfType<GameManager>();
-        currentHealth = PlayerStats.health;
+        currentHealth = PlayerPrefs.GetInt("TotalHealth", 3);
+        gameManager = FindObjectOfType<GameManager>();
+        
     }
 
 // Update is called once per frame
@@ -28,13 +30,12 @@ public class PlayerController : MonoBehaviour
             PlayerMovement();
             Shoot();
         }
-        
     }
 
     private void PlayerMovement()
     {
         horizontalInput = Input.GetAxis("Horizontal");
-        transform.Translate(Vector3.right * (horizontalInput * (PlayerStats.moveSpeed * Time.deltaTime)));
+        transform.Translate(Vector3.right * (horizontalInput * (currentMoveSpeed * Time.deltaTime)));
         if (transform.position.x < -xRange)
         {
             var position = transform.position;
@@ -53,7 +54,7 @@ public class PlayerController : MonoBehaviour
     {
         if (PlayerStats.isDoubleFireActive)
         {
-            if (Input.GetKeyDown(KeyCode.Space) && rateCount > PlayerStats.fireRate)
+            if (Input.GetKeyDown(KeyCode.Space) && rateCount > currentFireRate)
             {
                 var position = transform.position;
                 var setoff = -0.75f;
@@ -66,7 +67,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.Space) && rateCount > PlayerStats.fireRate)
+            if (Input.GetKeyDown(KeyCode.Space) && rateCount > currentFireRate)
             {
                 Instantiate(projectile, transform.position, Quaternion.identity);
                 rateCount = 0f;

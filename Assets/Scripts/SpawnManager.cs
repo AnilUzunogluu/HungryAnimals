@@ -5,7 +5,6 @@ using Random = UnityEngine.Random;
 public class SpawnManager : MonoBehaviour
 {
     public GameObject[] animals;
-    public Vector3[] spawnLocations;
     private Vector3 location;
     private float xRange = 15f;
     private float zPos = 20f;
@@ -23,11 +22,11 @@ public class SpawnManager : MonoBehaviour
                 timeCount = 0f;
             }
         }
-        else
+        if (!GameManager.isGameStarted)
         {
+            DestroyAllAnimals();
             timeCount = 0;
         }
-        
     }
 
     private void SpawnAnimal()
@@ -36,5 +35,15 @@ public class SpawnManager : MonoBehaviour
             var index = Random.Range(0, count);
             location = new Vector3(Random.Range(-xRange, xRange + 1), 0f, zPos);
             Instantiate(animals[index], location, animals[index].transform.rotation);
+    }
+
+    private void DestroyAllAnimals()
+    {
+            var animalsOnScene = GameObject.FindGameObjectsWithTag("Animal");
+            var count = animalsOnScene.Length;
+            for (int i = 0; i < count; i++)
+            {
+                Destroy(animalsOnScene[i]);
+            }
     }
 }

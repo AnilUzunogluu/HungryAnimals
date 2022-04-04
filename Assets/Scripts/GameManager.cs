@@ -13,14 +13,17 @@ public class GameManager : MonoBehaviour
     private Animator cameraAnimation;
     public GameObject player;
     private PlayerController playerController;
+    private SaveSystem saveSystem;
 
     // Start is called before the first frame update
     void Start()
     {
+        saveSystem = FindObjectOfType<SaveSystem>();
         uiScript = gameObject.GetComponent<UIManager>();
         playerController = player.GetComponent<PlayerController>();
         cameraAnimation = gameCamera.GetComponent<Animator>();
         cameraAnimation.enabled = false;
+        saveSystem.LoadGame();
     }
 
     public void PlayButtonClick()
@@ -55,7 +58,13 @@ public class GameManager : MonoBehaviour
 
     public void QuitGameButtonClick()
     {
+        saveSystem.SaveGame();
         Application.Quit();
+    }
+
+    public void ResetButtonClick()
+    {
+        PlayerPrefs.DeleteAll();
     }
 
     public void SetGameOver(bool b)

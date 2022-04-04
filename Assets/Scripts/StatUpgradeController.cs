@@ -5,12 +5,10 @@ using UnityEngine;
 
 public class StatUpgradeController : MonoBehaviour
 {
-    public PlayerStats playerStats;
-
     public int rateLevel;
     public int speedLevel;
     public int healthLevel;
-
+    
     public void FireRateUpgrade()
     {
         var cost = (rateLevel + 2) * 10;
@@ -41,7 +39,6 @@ public class StatUpgradeController : MonoBehaviour
             PlayerStats.coins -= cost;
             PlayerStats.moveSpeed *= 1.20f;
             speedLevel++;
-
         }
     }
 
@@ -50,9 +47,8 @@ public class StatUpgradeController : MonoBehaviour
         var cost = 100;
         if (PlayerStats.coins >= cost && !PlayerStats.isDoubleFireActive)
         {
-            PlayerStats.coins -= 100;
+            PlayerStats.coins -= cost;
             PlayerStats.isDoubleFireActive = true;
         }
-        
     }
 }

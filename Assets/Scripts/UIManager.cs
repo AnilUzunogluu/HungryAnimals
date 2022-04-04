@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ public class UIManager : MonoBehaviour
 {
     public GameObject upgradeMenu;
     public GameObject upgradeMenuImages;
+    private PlayerController playerController;
     public Text health;
     public Text coin;
     public Text gameOver;
@@ -15,9 +17,15 @@ public class UIManager : MonoBehaviour
     public Button quit;
 
 
+    private void Start()
+    {
+        var p = GameObject.FindWithTag("Player");
+        playerController = p.GetComponent<PlayerController>();
+    }
+
     private void Update()
     {
-        health.text = PlayerController.currentHealth + "";
+        health.text = playerController.currentHealth + "";
         coin.text = $"Coins: {PlayerStats.coins}";
     }
 
