@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     private PlayerController playerController;
 
-    // game over, oyun başladı mı, upgrade sayfası gelsin mi, 
     // Start is called before the first frame update
     void Start()
     {
@@ -47,12 +46,16 @@ public class GameManager : MonoBehaviour
     {
         uiScript.CallUpgradesMenu();
         uiScript.DisableGameOver();
-        // uiScript.DisableGameOver();
     }
 
     public void BackToMenuClick()
     {
         uiScript.CallMainMenu();
+    }
+
+    public void QuitGameButtonClick()
+    {
+        Application.Quit();
     }
 
     public void SetGameOver(bool b)

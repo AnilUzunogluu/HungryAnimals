@@ -10,7 +10,6 @@ public class StatUpgradeController : MonoBehaviour
     public int rateLevel;
     public int speedLevel;
     public int healthLevel;
-    public int autoFireCost;
 
     public void FireRateUpgrade()
     {

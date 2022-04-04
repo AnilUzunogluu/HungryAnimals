@@ -23,6 +23,10 @@ public class SpawnManager : MonoBehaviour
                 timeCount = 0f;
             }
         }
+        else
+        {
+            timeCount = 0;
+        }
         
     }
 

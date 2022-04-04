@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     public Text gameOver;
     public Button play;
     public Button upgrades;
+    public Button quit;
 
 
     private void Update()
@@ -27,12 +28,14 @@ public class UIManager : MonoBehaviour
 
         play.gameObject.SetActive(true);
         upgrades.gameObject.SetActive(true);
+        quit.gameObject.SetActive(true);
     }
 
     public void DisableMainMenu()
     {
         play.gameObject.SetActive(false);
         upgrades.gameObject.SetActive(false);
+        quit.gameObject.SetActive(false);
     }
 
     public void CallUpgradesMenu()
