@@ -3228,10 +3228,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1925028761}
   - component: {fileID: 1925028762}
+  - component: {fileID: 1925028766}
   - component: {fileID: 1925028763}
   - component: {fileID: 1925028764}
   - component: {fileID: 1925028765}
-  - component: {fileID: 1925028766}
   m_Layer: 0
   m_Name: _Scripts
   m_TagString: Untagged
@@ -3270,11 +3270,6 @@ MonoBehaviour:
   - {fileID: 997689201966715170, guid: 166b7ba08f990c14c89c9ef3efd932d1, type: 3}
   - {fileID: 2459145520643433464, guid: d8429cda943652c4fb7acdc606b595bb, type: 3}
   - {fileID: 5151939290244954303, guid: 63728546dea0cfc43801d37914b34096, type: 3}
-  spawnLocations:
-  - {x: -15, y: 0, z: 20}
-  - {x: -7.5, y: 0, z: 20}
-  - {x: 7.5, y: 0, z: 20}
-  - {x: 15, y: 0, z: 20}
 --- !u!114 &1925028763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3336,6 +3331,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be319192e0b841846b25026ef7569d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  upgradeController: {fileID: 1925028765}
+  playerController: {fileID: 910797801}
 --- !u!1 &1925327514
 GameObject:
   m_ObjectHideFlags: 0

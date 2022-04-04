@@ -13,10 +13,12 @@ public class PlayerController : MonoBehaviour
     public float currentFireRate;
     
     private GameManager gameManager;
+    private SaveManager saveSystem;
 
     public void Start()
     {
-        currentHealth = PlayerPrefs.GetInt("TotalHealth", 3);
+        saveSystem = FindObjectOfType<SaveManager>();
+        // saveSystem.LoadGame();
         gameManager = FindObjectOfType<GameManager>();
         
     }
