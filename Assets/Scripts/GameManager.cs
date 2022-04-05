@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     private Animator cameraAnimation;
     public GameObject player;
     private PlayerController playerController;
+    public StatUpgradeController upgradeController;
 
     public static bool isGameStarted;
     private static bool isGameOver;
@@ -64,6 +65,21 @@ public class GameManager : MonoBehaviour
     {
         saveManager.SaveGame();
         Application.Quit();
+    }
+
+    public void ResetButtonClick()
+    {
+        PlayerPrefs.DeleteAll();
+        upgradeController.rateLevel = 0;
+        upgradeController.speedLevel = 0;
+        upgradeController.healthLevel = 0;
+        upgradeController.doubleFireLevel = 0;
+        PlayerStats.coins = 0;
+        PlayerStats.health = 3;
+        PlayerStats.moveSpeed = 15f;
+        PlayerStats.fireRate = 1f;
+        PlayerStats.isDoubleFireActive = false;
+        saveManager.SaveGame();
     }
 
     public void SetGameOver(bool b)
