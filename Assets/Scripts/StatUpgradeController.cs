@@ -52,8 +52,8 @@ public class StatUpgradeController : MonoBehaviour
         {
             PlayerStats.coins -= doubleFireCost;
             PlayerStats.isDoubleFireActive = true;
-            saveManager.SaveGame();
             doubleFireLevel = maxUpgradeLevel;
+            saveManager.SaveGame();
         }
     }
 

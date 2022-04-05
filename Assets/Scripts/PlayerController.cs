@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
     private float xRange = 20f;
     
     public GameObject projectile;
+    public GameObject doubleProjectile;
     private float rateCount;
     
     public int currentHealth;
@@ -58,12 +59,7 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space) && rateCount > currentFireRate)
             {
-                var position = transform.position;
-                var setoff = -0.75f;
-                var left = new Vector3(position.x - setoff, position.y, position.z);
-                var right = new Vector3(position.x + setoff, position.y, position.z);
-                Instantiate(projectile, left, Quaternion.identity);
-                Instantiate(projectile, right, Quaternion.identity);
+                Instantiate(doubleProjectile, transform.position, Quaternion.identity);
                 rateCount = 0f;
             }
         }

@@ -23,6 +23,8 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetInt("speedLevel", upgradeController.speedLevel);
         
         PlayerPrefs.SetInt("DoubleFire", PlayerStats.isDoubleFireActive? 1 : 0);
+        PlayerPrefs.SetInt("DoubleFireLevel", upgradeController.doubleFireLevel);
+
         PlayerPrefs.SetInt("Coins", PlayerStats.coins);
     }
 
@@ -36,6 +38,7 @@ public class SaveManager : MonoBehaviour
         upgradeController.rateLevel = PlayerPrefs.GetInt("rateLevel", 0);
         upgradeController.speedLevel = PlayerPrefs.GetInt("speedLevel", 0);
         upgradeController.healthLevel = PlayerPrefs.GetInt("healthLevel", 0);
+        upgradeController.doubleFireLevel = PlayerPrefs.GetInt("DoubleFireLevel", 0);
         if (PlayerPrefs.GetInt("DoubleFire") == 1)
         {
             PlayerStats.isDoubleFireActive = true;
