@@ -8,12 +8,14 @@ public class GameManager : MonoBehaviour
 {
     public Camera gameCamera;
     private UIManager uiScript;
-    public static bool isGameStarted;
-    private static bool isGameOver;
+    private SaveManager saveManager;
     private Animator cameraAnimation;
     public GameObject player;
     private PlayerController playerController;
-    private SaveManager saveManager;
+
+    public static bool isGameStarted;
+    private static bool isGameOver;
+    private int gameWinCondition = 200;
 
     // Start is called before the first frame update
     void Start()
@@ -64,18 +66,24 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void ResetButtonClick()
-    {
-        PlayerPrefs.DeleteAll();
-    }
-
     public void SetGameOver(bool b)
     {
-        isGameStarted = !b;
-        isGameOver = b;
-        if (b)
+        if (DetectCollision.killCount < gameWinCondition)
         {
-            GameOver();
+            isGameStarted = !b;
+            isGameOver = b;
+            if (b)
+            {
+                GameOver();
+            }
         }
+        else
+        {
+            isGameStarted = !b;
+            isGameOver = b;
+            saveManager.SaveGame();
+            uiScript.WinScreen();
+        }
+        
     }
 }

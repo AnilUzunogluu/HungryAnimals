@@ -3,16 +3,21 @@ using UnityEngine;
 public class StatUpgradeController : MonoBehaviour
 {
     public SaveManager saveManager;
+    public int maxUpgradeLevel = 3;
     public int rateLevel;
+    public int rateCost;
     public int speedLevel;
+    public int speedCost;
     public int healthLevel;
+    public int healthCost;
+    public int doubleFireLevel;
+    public int doubleFireCost;
     
     public void FireRateUpgrade()
     {
-        var cost = (rateLevel + 2) * 1;
-        if (PlayerStats.coins >= cost && rateLevel < 3)
+        if (PlayerStats.coins >= rateCost && rateLevel < maxUpgradeLevel)
         {
-            PlayerStats.coins -= cost;
+            PlayerStats.coins -= rateCost;
             PlayerStats.fireRate -= 0.25f;
             rateLevel++;
             saveManager.SaveGame();
@@ -21,10 +26,9 @@ public class StatUpgradeController : MonoBehaviour
 
     public void HealthUpgrade()
     {
-        var cost = (healthLevel + 2) * 2;
-        if (PlayerStats.coins >= cost && healthLevel < 3)
+        if (PlayerStats.coins >= healthCost && healthLevel < maxUpgradeLevel)
         {
-            PlayerStats.coins -= cost;
+            PlayerStats.coins -= healthCost;
             PlayerStats.health++;
             healthLevel++;
             saveManager.SaveGame();
@@ -33,10 +37,9 @@ public class StatUpgradeController : MonoBehaviour
 
     public void MovementSpeedUpgrade()
     {
-        var cost = (speedLevel + 2) * 3;
-        if (PlayerStats.coins >= cost && speedLevel < 3 )
+        if (PlayerStats.coins >= speedCost && speedLevel < maxUpgradeLevel )
         {
-            PlayerStats.coins -= cost;
+            PlayerStats.coins -= speedCost;
             PlayerStats.moveSpeed *= 1.20f;
             speedLevel++;
             saveManager.SaveGame();
@@ -45,12 +48,20 @@ public class StatUpgradeController : MonoBehaviour
 
     public void DoubleFireUpgrade()
     {
-        var cost = 1;
-        if (PlayerStats.coins >= cost && !PlayerStats.isDoubleFireActive)
+        if (PlayerStats.coins >= doubleFireCost && !PlayerStats.isDoubleFireActive)
         {
-            PlayerStats.coins -= cost;
+            PlayerStats.coins -= doubleFireCost;
             PlayerStats.isDoubleFireActive = true;
             saveManager.SaveGame();
+            doubleFireLevel = maxUpgradeLevel;
         }
+    }
+
+    public void CalcCost()
+    {
+        rateCost = (rateLevel + 2) * 10;
+        healthCost = (healthLevel + 2) * 25;
+        speedCost = (speedLevel + 2) * 30;
+        doubleFireCost = 100;
     }
 }
