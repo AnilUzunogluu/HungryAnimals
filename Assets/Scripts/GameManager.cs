@@ -69,7 +69,6 @@ public class GameManager : MonoBehaviour
 
     public void ResetButtonClick()
     {
-        PlayerPrefs.DeleteAll();
         upgradeController.rateLevel = 0;
         upgradeController.speedLevel = 0;
         upgradeController.healthLevel = 0;
