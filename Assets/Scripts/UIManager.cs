@@ -5,6 +5,8 @@ public class UIManager : MonoBehaviour
 {
     public GameObject upgradeMenu;
     public GameObject upgradeMenuImages;
+    public GameObject mainMenu;
+    public GameObject uiElements;
     public PlayerController playerController;
     public StatUpgradeController upgradeController;
     
@@ -20,12 +22,8 @@ public class UIManager : MonoBehaviour
     public Text[] upgradesCostText;
     private int[] upgradesCost;
     private int[] upgradesLevel;
-
-    public Button play;
-    public Button upgrades;
-    public Button quit;
     
-    public Image coinImage;
+    public Button quit;
 
     private void Update()
     {
@@ -35,18 +33,13 @@ public class UIManager : MonoBehaviour
 
     public void CallMainMenu()
     {
-        upgradeMenu.gameObject.SetActive(false);
-        upgradeMenuImages.gameObject.SetActive(false);
-
-        play.gameObject.SetActive(true);
-        upgrades.gameObject.SetActive(true);
+        mainMenu.gameObject.SetActive(true);
         quit.gameObject.SetActive(true);
     }
 
     public void DisableMainMenu()
     {
-        play.gameObject.SetActive(false);
-        upgrades.gameObject.SetActive(false);
+        mainMenu.gameObject.SetActive(false);
         quit.gameObject.SetActive(false);
     }
 
@@ -56,6 +49,12 @@ public class UIManager : MonoBehaviour
         upgradeMenu.gameObject.SetActive(true);
         upgradeMenuImages.gameObject.SetActive(true);
         DisableMainMenu();
+    }
+
+    public void DisableUpgradesMenu()
+    {
+        upgradeMenu.gameObject.SetActive(false);
+        upgradeMenuImages.gameObject.SetActive(false);
     }
 
     public void PrintUpgradeCosts()
@@ -105,9 +104,7 @@ public class UIManager : MonoBehaviour
     {
         winScreen.gameObject.SetActive(true);
         quit.gameObject.SetActive(true);
-        coin.gameObject.SetActive(false);
-        coinImage.gameObject.SetActive(false);
-        health.gameObject.SetActive(false);
+        uiElements.gameObject.SetActive(false);
         finalScore.text = $"Your Final\nScore Was:\n{DetectCollision.killCount}";
         finalScore.gameObject.SetActive(true);
     }

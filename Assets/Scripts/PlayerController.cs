@@ -16,10 +16,13 @@ public class PlayerController : MonoBehaviour
     private GameManager gameManager;
     private SaveManager saveSystem;
 
+    private AudioSource audioSource;
+    public AudioClip coinSound;
+
     public void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         saveSystem = FindObjectOfType<SaveManager>();
-        // saveSystem.LoadGame();
         gameManager = FindObjectOfType<GameManager>();
         
     }
@@ -32,6 +35,7 @@ public class PlayerController : MonoBehaviour
             rateCount += Time.deltaTime;
             PlayerMovement();
             Shoot();
+            PlayCoinSound();
         }
     }
 
@@ -86,5 +90,14 @@ public class PlayerController : MonoBehaviour
         currentHealth--; 
         currentHealth = currentHealth < 0 ? currentHealth = 0 : currentHealth;
         IsGameOver();
+    }
+
+    private void PlayCoinSound()
+    {
+        var a = PlayerStats.coins;
+        if (a != PlayerStats.coins)
+        {
+            audioSource.PlayOneShot(coinSound);
+        }
     }
 }

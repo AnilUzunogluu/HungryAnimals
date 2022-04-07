@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +10,8 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     private PlayerController playerController;
     public StatUpgradeController upgradeController;
+    private AudioSource mainGameMusic;
+    public Text muteButtonText;
 
     public static bool isGameStarted;
     private static bool isGameOver;
@@ -25,6 +24,7 @@ public class GameManager : MonoBehaviour
         uiScript = gameObject.GetComponent<UIManager>();
         playerController = player.GetComponent<PlayerController>();
         cameraAnimation = gameCamera.GetComponent<Animator>();
+        mainGameMusic = gameCamera.GetComponent<AudioSource>();
         cameraAnimation.enabled = false;
         saveManager.LoadGame();
     }
@@ -58,6 +58,7 @@ public class GameManager : MonoBehaviour
 
     public void BackToMenuClick()
     {
+        uiScript.DisableUpgradesMenu();
         uiScript.CallMainMenu();
     }
 
@@ -99,6 +100,19 @@ public class GameManager : MonoBehaviour
             saveManager.SaveGame();
             uiScript.WinScreen();
         }
-        
+    }
+
+    public void MuteButtonClick()
+    {
+        if (mainGameMusic.isPlaying)
+        {
+            mainGameMusic.Stop();
+            muteButtonText.text = "Unmute";
+        }
+        else
+        {
+            mainGameMusic.Play();
+            muteButtonText.text = "Mute";
+        }
     }
 }

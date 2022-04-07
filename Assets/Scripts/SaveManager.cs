@@ -1,18 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SaveManager : MonoBehaviour
 {
     public StatUpgradeController upgradeController;
     public PlayerController playerController;
-    private float timeCount;
-    private float saveFrequency = 5f;
 
     public void SaveGame()
     {
-        Debug.Log("Game Saved!");
-        
         PlayerPrefs.SetFloat("FireRate", PlayerStats.fireRate);
         PlayerPrefs.SetInt("rateLevel", upgradeController.rateLevel);
         
